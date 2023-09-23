@@ -43,7 +43,7 @@ class SignInPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                //Email
+                //Note Email
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
