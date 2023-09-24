@@ -3,8 +3,8 @@ import 'package:bank_sha/ui/widgets/buttons.dart';
 import 'package:bank_sha/ui/widgets/forms.dart';
 import 'package:flutter/material.dart';
 
-class SignInPage extends StatelessWidget {
-  const SignInPage({super.key});
+class SignUpSetProfilePage extends StatelessWidget {
+  const SignUpSetProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class SignInPage extends StatelessWidget {
                     image: AssetImage('assets/img_logo_light.png'))),
           ),
           Text(
-            'Sign In &\nGrow Your Finance',
+            'Join Us to Unlock\nYour Growth',
             style: blackTextStyle.copyWith(
               fontSize: 20,
               fontWeight: semiBold,
@@ -43,31 +43,40 @@ class SignInPage extends StatelessWidget {
               color: whiteColor,
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                //Note Email
-                const CustomFormField(title: 'Email Address'),
+                Container(
+                  width: 120,
+                  height: 120,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: lightBackgroundColor,
+                  ),
+                  child: Center(
+                    child: Image.asset(
+                      'assets/ic_upload.png',
+                      width: 32,),
+                  ),
+                ),
                 const SizedBox(
                   height: 16,
                 ),
-                //Password
-                CustomFormField(title: 'Password',
-                obscureText: true,),
-                const SizedBox(
-                  height: 8,
+                Text('Shayna Hanna',
+                style: blackTextStyle.copyWith(
+                  fontSize: 18,
+                  fontWeight: medium,
+                  )
                 ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    'Forgot Password',
-                    style: blueTextStyle,
-                  ),
+                const SizedBox(
+                  height: 30,
+                ),
+                CustomFormField(title: 'Set PIN (6 digit number)',
                 ),
                 const SizedBox(
                   height: 30,
                 ),
                 CustomFilledButton(
-                  title: 'Sign In',
+                  title: 'Contiune',
                   onPressed: () {},
                 )
               ],
@@ -76,16 +85,6 @@ class SignInPage extends StatelessWidget {
           const SizedBox(
             height: 50,
           ),
-          CustomTextButton(
-            title: 'Create New Account',
-            onPressed: () {
-              Navigator.pushNamed(context, '/sign-up');
-            },
-            height: 24,
-          ),
-          SizedBox(
-            height: 50,
-          )
         ],
       ),
     );
