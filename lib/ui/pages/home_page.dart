@@ -1,5 +1,6 @@
 import 'package:bank_sha/shared/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:bank_sha/ui/widgets/home_service_item.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -67,6 +68,7 @@ class HomePage extends StatelessWidget {
           buildProfile(),
           buildWalletCard(),
           buildLevel(),
+          buildServices(context)
         ],
       ),
     );
@@ -212,7 +214,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               Text(
-                'of Rp 20.000',
+                'of Rp 220.000',
                 style: blackTextStyle.copyWith(
                   fontWeight: semiBold,
                 ),
@@ -235,4 +237,58 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+
+  Widget buildServices(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(
+        top: 30,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Do Something',
+            style: blackTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: semiBold,
+            ),
+          ),
+          const SizedBox(
+            height: 14,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              HomeServiceItem(
+                iconUrl: 'assets/ic_topup.png',
+                title: 'Top Up',
+                onTap: () {
+                  Navigator.pushNamed(context, '/topup');
+                },
+              ),
+              HomeServiceItem(
+                iconUrl: 'assets/ic_send.png',
+                title: 'Send',
+                onTap: () {
+                  Navigator.pushNamed(context, '/transfer');
+                },
+              ),
+              HomeServiceItem(
+                iconUrl: 'assets/ic_withdraw.png',
+                title: 'Withdraw',
+                onTap: () {},
+              ),
+              HomeServiceItem(
+                iconUrl: 'assets/ic_more.png',
+                title: 'More',
+                onTap: () {
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
 }
