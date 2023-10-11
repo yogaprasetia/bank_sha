@@ -31,25 +31,27 @@ class HomePage extends StatelessWidget {
             fontWeight: medium,
           ),
           items: [
-          BottomNavigationBarItem(
-            icon: Image.asset('assets/ic_overview.png',width: 20,color: blueColor,),
-            label: 'Overview'),
             BottomNavigationBarItem(
-            icon: Image.asset('assets/ic_history.png',width: 20),
-            label: 'History'),
+                icon: Image.asset(
+                  'assets/ic_overview.png',
+                  width: 20,
+                  color: blueColor,
+                ),
+                label: 'Overview'),
             BottomNavigationBarItem(
-            icon: Image.asset('assets/ic_statistics.png',width: 20),
-            label: 'Statistic'),
+                icon: Image.asset('assets/ic_history.png', width: 20),
+                label: 'History'),
             BottomNavigationBarItem(
-            icon: Image.asset('assets/ic_reward.png',width: 20),
-            label: 'Reward'),
-        ],
+                icon: Image.asset('assets/ic_statistics.png', width: 20),
+                label: 'Statistic'),
+            BottomNavigationBarItem(
+                icon: Image.asset('assets/ic_reward.png', width: 20),
+                label: 'Reward'),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-
-        },
+        onPressed: () {},
         backgroundColor: purpleColor,
         child: Image.asset(
           'assets/ic_plus_circle.png',
@@ -60,16 +62,17 @@ class HomePage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(
           horizontal: 24,
-
         ),
         children: [
           buildProfile(),
           buildWalletCard(),
+          buildLevel(),
         ],
       ),
     );
   }
-  Widget buildProfile(){
+
+  Widget buildProfile() {
     return Container(
       margin: const EdgeInsets.only(
         top: 40,
@@ -102,9 +105,9 @@ class HomePage extends StatelessWidget {
             width: 60,
             height: 60,
             decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(image: AssetImage('assets/img_profile.png'))
-            ),
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                    image: AssetImage('assets/img_profile.png'))),
             child: Align(
               alignment: Alignment.topRight,
               child: Container(
@@ -127,31 +130,29 @@ class HomePage extends StatelessWidget {
     );
   }
 
-Widget buildWalletCard(){
-  return Container(
-    width: double.infinity,
-    height: 220,
-    margin: const EdgeInsets.only(
-      top: 30,
-    ),
-    padding: const EdgeInsets.all(30),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(28),
-      image: const DecorationImage(
-        fit: BoxFit.cover,
-        image: AssetImage('assets/img_bg_card.png'),
-
-      )
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Shayn Hanna',
-          style: whiteTextStyle.copyWith(
-            fontSize: 18,
-            fontWeight: medium,
-          ),
+  Widget buildWalletCard() {
+    return Container(
+      width: double.infinity,
+      height: 220,
+      margin: const EdgeInsets.only(
+        top: 30,
+      ),
+      padding: const EdgeInsets.all(30),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(28),
+          image: const DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage('assets/img_bg_card.png'),
+          )),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Shayn Hanna',
+            style: whiteTextStyle.copyWith(
+              fontSize: 18,
+              fontWeight: medium,
+            ),
           ),
           const SizedBox(
             height: 28,
@@ -159,10 +160,10 @@ Widget buildWalletCard(){
           Text(
             '**** **** **** 1280',
             style: whiteTextStyle.copyWith(
-            fontSize: 18,
-            fontWeight: medium,
-            letterSpacing: 6,
-          ),
+              fontSize: 18,
+              fontWeight: medium,
+              letterSpacing: 6,
+            ),
           ),
           const SizedBox(
             height: 21,
@@ -176,10 +177,62 @@ Widget buildWalletCard(){
             style: whiteTextStyle.copyWith(
               fontSize: 24,
               fontWeight: semiBold,
-            ),),
-      ],
-    ),
-  );
-}
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
+  Widget buildLevel() {
+    return Container(
+      margin: const EdgeInsets.only(
+        top: 20,
+      ),
+      padding: const EdgeInsets.all(22),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: whiteColor,
+      ),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Text(
+                'Level 1',
+                style: blackTextStyle.copyWith(
+                  fontWeight: medium,
+                ),
+              ),
+              const Spacer(),
+              Text(
+                '55% ',
+                style: greenTextStyle.copyWith(
+                  fontWeight: semiBold,
+                ),
+              ),
+              Text(
+                'of Rp 20.000',
+                style: blackTextStyle.copyWith(
+                  fontWeight: semiBold,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(55),
+            child: LinearProgressIndicator(
+              value: 0.55,
+              minHeight: 5,
+              valueColor: AlwaysStoppedAnimation(greenColor),
+              backgroundColor: lightBackgroundColor,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
