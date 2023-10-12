@@ -68,7 +68,8 @@ class HomePage extends StatelessWidget {
           buildProfile(),
           buildWalletCard(),
           buildLevel(),
-          buildServices(context)
+          buildServices(context),
+          buildLatestTransactions()
         ],
       ),
     );
@@ -95,7 +96,7 @@ class HomePage extends StatelessWidget {
                 height: 2,
               ),
               Text(
-                'shaynahan',
+                'yoga',
                 style: blackTextStyle.copyWith(
                   fontSize: 20,
                   fontWeight: semiBold,
@@ -282,6 +283,10 @@ class HomePage extends StatelessWidget {
                 iconUrl: 'assets/ic_more.png',
                 title: 'More',
                 onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => const MoreDialog(),
+                  );
                 },
               ),
             ],
@@ -291,4 +296,229 @@ class HomePage extends StatelessWidget {
     );
   }
 
+  Widget buildLatestTransactions() {
+    return Container(
+      margin: const EdgeInsets.only(
+        top: 30,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Latest Transactions',
+            style: blackTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: semiBold,
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(22),
+            margin: const EdgeInsets.only(
+              top: 14,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: whiteColor,
+            ),
+            // child: BlocProvider(
+            //   create: (context) => TransactionBloc()..add(TransactionGet()),
+            //   child: BlocBuilder<TransactionBloc, TransactionState>(
+            //     builder: (context, state) {
+            //       if (state is TransactionSuccess) {
+            //         return Column(
+            //           children: state.transactions.map((transaction) {
+            //             return HomeLatestTransactionItem(
+            //                 transaction: transaction);
+            //           }).toList(),
+            //         );
+            //       }
+
+            //       return const Center(
+            //         child: CircularProgressIndicator(),
+            //       );
+            //     },
+            //   ),
+            // ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildSendAgain() {
+    return Container(
+      margin: const EdgeInsets.only(
+        top: 30,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Send Again',
+            style: blackTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: semiBold,
+            ),
+          ),
+          const SizedBox(
+            height: 14,
+          ),
+          // BlocProvider(
+          //   create: (context) => UserBloc()..add(UserGetRecent()),
+          //   child: BlocBuilder<UserBloc, UserState>(
+          //     builder: (context, state) {
+          //       if (state is UserSuccess) {
+          //         return SingleChildScrollView(
+          //           scrollDirection: Axis.horizontal,
+          //           child: Row(
+          //             children: state.users.map((user) {
+          //               return GestureDetector(
+          //                 onTap: () {
+          //                   Navigator.push(
+          //                     context,
+          //                     MaterialPageRoute(
+          //                       builder: (context) => TransferAmountPage(
+          //                         data: TransferFormModel(
+          //                           sendTo: user.username,
+          //                         ),
+          //                       ),
+          //                     ),
+          //                   );
+          //                 },
+          //                 child: HomeUserItem(user: user),
+          //               );
+          //             }).toList(),
+          //           ),
+          //         );
+          //       }
+
+          //       return const Center(
+          //         child: CircularProgressIndicator(),
+          //       );
+          //     },
+          //   ),
+          // ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildFriendlyTips() {
+    return Container(
+      margin: const EdgeInsets.only(
+        top: 30,
+        bottom: 50,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Friendly Tips',
+            style: blackTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: semiBold,
+            ),
+          ),
+          const SizedBox(
+            height: 14,
+          ),
+          // BlocProvider(
+          //   create: (context) => TipsBloc()..add(TipsGet()),
+          //   child: BlocBuilder<TipsBloc, TipsState>(
+          //     builder: (context, state) {
+          //       if (state is TipsSuccess) {
+          //         return Wrap(
+          //           spacing: 17,
+          //           runSpacing: 18,
+          //           children: state.tips.map((tip) {
+          //             return HomeTipsItem(tips: tip);
+          //           }).toList(),
+          //         );
+          //       }
+
+          //       return const Center(
+          //         child: CircularProgressIndicator(),
+          //       );
+          //     },
+          //   ),
+          // ),
+        ],
+      ),
+    );
+  }
+}
+
+class MoreDialog extends StatelessWidget {
+  const MoreDialog({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      backgroundColor: Colors.transparent,
+      insetPadding: EdgeInsets.zero,
+      alignment: Alignment.bottomCenter,
+      content: Container(
+        height: 326,
+        width: MediaQuery.of(context).size.width,
+        padding: const EdgeInsets.all(30),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(40),
+          color: lightBackgroundColor,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Do More With Us',
+              style: blackTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: semiBold,
+              ),
+            ),
+            const SizedBox(
+              height: 13,
+            ),
+            Wrap(
+              spacing: 29,
+              runSpacing: 25,
+              children: [
+                HomeServiceItem(
+                  iconUrl: 'assets/ic_product_data.png',
+                  title: 'Data',
+                  onTap: () {
+                    Navigator.pushNamed(context, '/data-provider');
+                  },
+                ),
+                HomeServiceItem(
+                  iconUrl: 'assets/ic_product_water.png',
+                  title: 'Water',
+                  onTap: () {},
+                ),
+                HomeServiceItem(
+                  iconUrl: 'assets/ic_product_stream.png',
+                  title: 'Stream',
+                  onTap: () {},
+                ),
+                HomeServiceItem(
+                  iconUrl: 'assets/ic_product_movie.png',
+                  title: 'Movie',
+                  onTap: () {},
+                ),
+                HomeServiceItem(
+                  iconUrl: 'assets/ic_product_food.png',
+                  title: 'Food',
+                  onTap: () {},
+                ),
+                HomeServiceItem(
+                  iconUrl: 'assets/ic_product_travel.png',
+                  title: 'Travel',
+                  onTap: () {},
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
